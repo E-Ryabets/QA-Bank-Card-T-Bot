@@ -9,7 +9,7 @@ from telebot import TeleBot, types
 from faker import Faker
 
 
-bot = TeleBot(token='Вставить_свой_токен', parse_mode='html') # создание бота
+bot = TeleBot(token='5449050595:AAEmPbBm-JJN5kGgsmireG9PxLrtGXyz7IM', parse_mode='html') # создание бота
 
 faker = Faker() # утилита для генерации номеров кредитных карт
 
@@ -26,14 +26,14 @@ card_type_keybaord.row(
     types.KeyboardButton(text='JCB'),
 )
 
-
 # обработчик команды '/start'
 @bot.message_handler(commands=['start'])
 def start_command_handler(message: types.Message):
     # отправляем ответ на команду '/start'
     bot.send_message(
         chat_id=message.chat.id, # id чата, в который необходимо направить сообщение
-        text='Привет! Я умею генерировать номер тестовой банковской карты\nВыбери тип карты:', # текст сообщения
+        text='Добрый день <b>{0.first_name}</b> !\nНужно сгенерировать номер тестовой банковской карты для прохождения тест-кейсов в тестовой среде? Нет проблем!\nВыберите тип карты (на данный момент доступно 4 варианта, но этого должно хватить):'.format(message.from_user)
+,parse_mode='html', # текст сообщения
         reply_markup=card_type_keybaord,
     )
 
@@ -55,7 +55,8 @@ def message_handler(message: types.Message):
         # выводим ошибку
         bot.send_message(
             chat_id=message.chat.id,
-            text='Не понимаю тебя :(',
+            text='<b>{0.first_name}</b>, к сожалению, я не понимаю Вас :( \nНапишите мне снова "/start"'.format(message.from_user)
+,parse_mode='html',
         )
         return
 
@@ -66,7 +67,11 @@ def message_handler(message: types.Message):
     # и выводим пользователю
     bot.send_message(
         chat_id=message.chat.id,
+<<<<<<< HEAD
         text=f'Новый номер тестовой карты {card_type}:\n<code>{card_number}</code>'
+=======
+        text=f'Ваша тестовая карта {card_type}:\n<code>{card_number}</code>.\nВозможно, нужна ещё одна, или карта другого формата? Выбирайте.'
+>>>>>>> TB1
     )
 
 
