@@ -67,11 +67,7 @@ def message_handler(message: types.Message):
     # и выводим пользователю
     bot.send_message(
         chat_id=message.chat.id,
-<<<<<<< HEAD
-        text=f'Новый номер тестовой карты {card_type}:\n<code>{card_number}</code>'
-=======
         text=f'Ваша тестовая карта {card_type}:\n<code>{card_number}</code>.\nВозможно, нужна ещё одна, или карта другого формата? Выбирайте.'
->>>>>>> TB1
     )
 
 
